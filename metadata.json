@@ -1,0 +1,6 @@
+{
+  "name": "Sổ Chủ Nhiệm Điện Tử - Quản Lý Lớp & Điểm Số",
+  "description": "Ứng dụng sổ chủ nhiệm toàn diện dành cho giáo viên: quản lý hồ sơ học sinh, điểm số môn học, chuyên cần, nề nếp thi đua, sơ đồ chỗ ngồi và báo cáo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
