@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GraduationCap, Lock, User, Eye, EyeOff, ShieldCheck, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
+import { GraduationCap, Lock, User, Eye, EyeOff, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
 
 interface TeacherLoginViewProps {
   onLoginSuccess: () => void;
@@ -16,10 +16,9 @@ export const TeacherLoginView: React.FC<TeacherLoginViewProps> = ({
   schoolName = 'TRƯỜNG THPT LÊ QUÝ ĐÔN',
   className = '10A1',
 }) => {
-  const [username, setUsername] = useState('Hoaibao');
-  const [password, setPassword] = useState('10011982');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,22 +31,12 @@ export const TeacherLoginView: React.FC<TeacherLoginViewProps> = ({
     // Tên đăng nhập: Hoaibao (không phân biệt hoa thường để tiện nhập)
     // Mật khẩu: 10011982
     if (trimmedUser.toLowerCase() === 'hoaibao' && trimmedPass === '10011982') {
-      if (rememberMe) {
-        localStorage.setItem('teacher_auth_token', 'Hoaibao_authenticated');
-      } else {
-        sessionStorage.setItem('teacher_auth_token', 'Hoaibao_authenticated');
-      }
+      sessionStorage.setItem('teacher_auth_token', 'Hoaibao_authenticated');
       setErrorMsg(null);
       onLoginSuccess();
     } else {
       setErrorMsg('Tên đăng nhập hoặc mật khẩu không chính xác! Vui lòng kiểm tra lại.');
     }
-  };
-
-  const handleFillDemo = () => {
-    setUsername('Hoaibao');
-    setPassword('10011982');
-    setErrorMsg(null);
   };
 
   return (
@@ -142,28 +131,6 @@ export const TeacherLoginView: React.FC<TeacherLoginViewProps> = ({
               </div>
             </div>
 
-            {/* Remember me & Quick fill */}
-            <div className="flex items-center justify-between pt-1">
-              <label className="flex items-center gap-2 cursor-pointer text-neutral-600 text-xs">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4"
-                />
-                <span>Ghi nhớ đăng nhập</span>
-              </label>
-
-              <button
-                type="button"
-                onClick={handleFillDemo}
-                className="text-emerald-700 hover:text-emerald-800 font-semibold text-xs inline-flex items-center gap-1"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Điền nhanh mật khẩu</span>
-              </button>
-            </div>
-
             <button
               type="submit"
               className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 mt-4"
@@ -188,7 +155,7 @@ export const TeacherLoginView: React.FC<TeacherLoginViewProps> = ({
 
       {/* Footer */}
       <div className="text-center text-[11px] text-neutral-400 py-3">
-        Sổ Chủ Nhiệm Điện Tử · Tài khoản: <strong>Hoaibao</strong> · Tiêu chuẩn Bộ Giáo dục & Đào tạo Việt Nam
+                         Sổ Chủ Nhiệm Điện Tử · Tiêu chuẩn Bộ Giáo dục & Đào tạo Việt Nam
       </div>
     </div>
   );
